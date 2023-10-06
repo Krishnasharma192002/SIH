@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUIZ GAME</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: url(images/color.jpg);
+             background-size: cover;
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            background: url(images/bg.jpg);
+        }
+
+        .question {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .option {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .option:hover {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        .result {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>TEST YOURSELF</h1>
+        <div class="question" id="question">What is a trademark</div>
+        <div class="options">
+            <div class="option" onclick="checkAnswer(0)">A. Paris</div>
+            <div class="option" onclick="checkAnswer(1)">B. London</div>
+            <div class="option" onclick="checkAnswer(2)">C. Berlin</div>
+            <div class="option" onclick="checkAnswer(3)">D. Rome</div>
+        </div>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "What is a design in the context of intellectual property rights (IPR)?",
+                options: ["A plan for building something", 
+                "A creative arrangement of visual elements like shapes, colors, and patterns", 
+                 "A written document outlining a new idea",
+                 "A detailed drawing of a machine"
+                ],
+                answerIndexes: [1]
+            },
+            {
+                question: "How are designs protected under IPR?",
+                options: [ "Through trademarks", 
+                 "Through patents", 
+                 "Through copyrights", 
+                 "Through design patents"
+                ],
+                answerIndexes: [3]
+            },
+            {
+                question: "Which of the following is NOT an example of a design?",
+                options: ["A unique chair with a distinctive shape and color", 
+                "A new type of smartphone", 
+                 "A decorative pattern on a t-shirt", 
+                 "A blueprint for a house"
+                ],
+                answerIndexes: [1]
+            },
+            {
+                question: "What does it mean to have a design patent?",
+                options: ["You can sell your design to anyone without restrictions", 
+                "You have exclusive rights to make, use, and sell your design for a certain period", 
+                 "You must share your design with others for free",
+                 "You can only use your design for personal use"
+                ],
+                answerIndexes: [1]
+            },
+            {
+                question: ": Why is protecting a design important?",
+                options: ["To make money by selling the design", 
+                "To prevent others from copying and profiting from your unique design", 
+                 "To keep the design a secret",
+                "To ensure the design is available for everyone to use"
+                ],
+                answerIndexes: [1]
+            },
+            {
+                question: "Which of the following is an example of a design patent?",
+                options: ["A new recipe for chocolate chip cookies", 
+                 "A unique pattern for a smartphone case",
+                 "A book cover design",
+                 "A scientific formula"
+                ],
+                answerIndexes: [1]
+            },
+            {
+                question: "How long does a typical design patent protection last?",
+                options: [ "20 years",
+                "50 years",
+                 "For the creator's lifetime plus 70 years",
+                 "10 years"
+                ],
+                
+                answerIndexes: [0]
+            },
+            {
+                question: " Can two different people have a design patent for the same design?",
+                options: ["Yes, as long as they both create the design independently", 
+                "No, only one person can have a design patent for a specific design", 
+                 "Yes, if they both apply on the same day", 
+                 "No, because designs cannot be patented"
+                ],
+                answerIndexes: [1]
+            },
+            {
+                question: "Which of the following is an example of a design?",
+                options: ["A mathematical equation",
+                "A unique and stylish logo",
+                 "A famous novel",
+                 "A chemical formula"
+                ],
+                answerIndexes: [1]
+            },
+            {
+                question: "What is the primary goal of protecting a design through IPR?",
+                options: ["To make the design available for anyone to use", 
+                "To ensure the design remains a secret", 
+                 "To encourage innovation and creativity by giving creators rights to their designs", 
+                 "To prevent anyone from using the design, even the creator",
+                ],
+                answerIndexes: [2]
+            },
+            // Add more questions here...
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function displayQuestion() {
+            if (currentQuestion < questions.length) {
+                document.getElementById("question").textContent = `Question ${currentQuestion + 1}: ${questions[currentQuestion].question}`;
+                const optionsHTML = questions[currentQuestion].options.map((option, index) => {
+                    return `<div class="option" onclick="checkAnswer(${index})">${String.fromCharCode(65 + index)}. ${option}</div>`;
+                }).join("");
+                document.querySelector(".options").innerHTML = optionsHTML;
+            } else {
+                document.getElementById("question").textContent = "Quiz Completed!";
+                document.querySelector(".options").innerHTML = "";
+                document.getElementById("result").textContent = `Your Score: ${score} / ${questions.length}`;
+            }
+        }
+
+        function checkAnswer(selectedIndex) {
+            const correctAnswers = questions[currentQuestion].answerIndexes;
+            if (correctAnswers.includes(selectedIndex)) {
+                score++;
+            }
+            currentQuestion++;
+            displayQuestion();
+        }
+
+        displayQuestion();
+    </script>
+</body>
+</html>

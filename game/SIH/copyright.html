@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: orangered;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: url(images/color.jpg);
+             background-size: cover;
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            background-color:orange;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            background: url(images/bg.jpg);
+        }
+
+        .question {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .option {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .option:hover {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        .result {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>TEST YOURSELF</h1>
+        <div class="question" id="question">Question 1: What is copyright?</div>
+        <div class="options">
+            <div class="option" onclick="checkAnswer(0)">A. The right to copy any book for free </div>
+            <div class="option" onclick="checkAnswer(1)">B. London</div>
+            <div class="option" onclick="checkAnswer(2)">C. Berlin</div>
+            <div class="option" onclick="checkAnswer(3)">D. Rome</div>
+        </div>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "What is copyright?",
+                options: ["The right to copy any book for free ", "The right to copy any book for free ", "The right to use any image found online ", "The right to sell copyrighted works without permission"],
+                answerIndexes: [1]
+            },
+            {
+                question: "Which of the following can be protected by copyright?",
+                options: ["A novel ", "A recipe ", "A recipe ", "JA recipe "],
+                answerIndexes: [0]
+            },
+            {
+                question: ": How long does copyright protection typically last in most countries?",
+                options: ["Forever ", "50 years after the author's death ", "10 years from the date of creation ", "25 years after the work is published"],
+                answerIndexes: [1]
+            },
+            {
+                question: "If you want to use someone else's copyrighted music in a school project, what should you do?",
+                options: ["Ignore copyright and use the music anyway ", 
+                "Ask for permission or use music that is in the public domain", 
+                "NPay the creator a small fee ",
+                 "Buy the music online"],
+                answerIndexes: [1]
+            },
+            {
+                question: "What does 'public domain' mean in relation to copyright?",
+                options: [") Works that are free to the public but cannot be used ", 
+                "Works that are owned by the government ", 
+                "Works that are not protected by copyright and can be used by anyone ",
+                 "Works that are very popular"],
+                answerIndexes: [2]
+            },
+            {
+                question: "Who is the automatic copyright owner of a student's school essay or artwork?",
+                options: ["The teacher ", 
+                "The student's parents ", "The student who created the work ",
+                 "The school principal"],
+                answerIndexes: [2]
+            },
+            {
+                question: "What does copyright infringement mean?",
+                options: ["Giving credit to the original creator ",
+                 "Using someone else's copyrighted work without permission",
+                  "Selling copyrighted works at a lower price ", 
+                  "Creating something similar to a copyrighted work"],
+                answerIndexes: [1]
+            },
+            {
+                question: "If you create a piece of art, when does your copyright protection begin?",
+                options: [" As soon as you show it to your friends",
+                 "Using someone else's copyrighted work without permission",
+                  "Selling copyrighted works at a lower price", "Creating something similar to a copyrighted work"],
+                answerIndexes: [2]
+            },
+            {
+                question: "What is fair use in copyright law?",
+                options: ["Using any copyrighted material for free  ",
+                 "A doctrine that allows limited use of copyrighted material without permission for purposes like education, commentary, and parody ",
+                  "A fee that must be paid to use any copyrighted work",
+                  "Using copyrighted material only in schools"],
+                answerIndexes: [1]
+            },
+            {
+                question: "What is the purpose of copyright?",
+                options: ["To prevent anyone from using creative works ",
+                 "To protect the rights of creators and encourage the creation of new works ", 
+                 "To make money for the government", "To give free access to all creative works"],
+                answerIndexes: [1]
+            },
+            // Add more questions here...
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function displayQuestion() {
+            if (currentQuestion < questions.length) {
+                document.getElementById("question").textContent = `Question ${currentQuestion + 1}: ${questions[currentQuestion].question}`;
+                const optionsHTML = questions[currentQuestion].options.map((option, index) => {
+                    return `<div class="option" onclick="checkAnswer(${index})">${String.fromCharCode(65 + index)}. ${option}</div>`;
+                }).join("");
+                document.querySelector(".options").innerHTML = optionsHTML;
+            } else {
+                document.getElementById("question").textContent = "Quiz Completed!";
+                document.querySelector(".options").innerHTML = "";
+                document.getElementById("result").textContent = `Your Score: ${score} / ${questions.length}`;
+            }
+        }
+
+        function checkAnswer(selectedIndex) {
+            const correctAnswers = questions[currentQuestion].answerIndexes;
+            if (correctAnswers.includes(selectedIndex)) {
+                score++;
+            }
+            currentQuestion++;
+            displayQuestion();
+        }
+
+        displayQuestion();
+    </script>
+</body>
+</html>

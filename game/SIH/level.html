@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level Selection</title>
+    <link rel="stylesheet" href="level.css">
+   
+</head>
+<body>
+    <div class="container">
+       <div class="text">
+        <h1>Select a Level</h1>
+       </div> 
+        <a href="trademark.html"><div class="level">Level 1</div></a>
+        <a href="scramble.html">
+        <div class="level ">
+            <span class="lock-icon" id="lock2"></span>
+            Level 2
+        </div> </a>
+        <a href="tl3.html">
+        <div class="level">
+            <span class="lock-icon"></span>
+            Level 3
+        </div></a>
+        <div class="level locked">
+            <span class="lock-icon">&#128274;</span>
+            Level 4
+        </div>
+        <div class="level locked">
+            <span class="lock-icon">&#128274;</span>
+            Level 5
+        </div>
+    </div>
+</body>
+<script>
+    // Get the level 3 element
+    const level3 = document.getElementById("lock2");
+
+    // Display the level 3 element
+    level3.style.display = 'none';
+    level3.style.backgroundColor = 'red';
+
+  </script>
+</html>

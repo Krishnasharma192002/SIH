@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIH GAME</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="level.html">
+   
+
+</head>
+<body>
+
+    <div class="container">
+    <div class="navbar">
+        <img src="images/logo.jpeg" alt="logo">
+        <nav>
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="http://">GUIDE</a></li>
+                <li><a href="">SETTING</a></li>
+                <li><a href="login.html">LOG IN</a></li>
+                <li>
+                    <button id="musicButton" onclick="toggleMusic()">🎵</button>
+    <audio id="backgroundMusic" loop autoplay>
+        <source src="sound/summer-tropical-deep-house-background-music-for-video-azure-miami-157990.mp3" type="audio/mpeg">
+        
+    </audio>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+        
+    
+    <div class="row">
+        <div class="col">
+            <h1>LET'S PLAY</h1>
+            <P></P>
+            
+            <a href="controls.html"><button type="button">Explore</button></a>
+
+
+        </div>
+        <div class="col">
+           <a href="level.html"> <div class="card card1">
+                <h5>TRADEMARK</h5></a>
+                <p></p>
+            </div>
+           <a href="Plevel.html"> <div class="card card2">
+                <h5>PATENTS</h5></a>
+                <p></p>
+            </div>
+           <a href="Clevel.html"> <div class="card card3">
+                <h5>COPYRIGHT</h5></a>
+                <p></p>
+            </div>
+           <a href="Dlevel.html"> <div class="card card4">
+                <h5>DESIGN</h5></a>
+                <p></p>
+            </div>
+            
+       
+    </div>
+   
+    </div>
+    <script>
+        
+        const backgroundMusic = document.getElementById("backgroundMusic");
+        const musicButton = document.getElementById("musicButton");
+
+        function toggleMusic() {
+            if (backgroundMusic.paused) {
+                backgroundMusic.play();
+                musicButton.innerText = "🔇";
+            } else {
+                backgroundMusic.pause();
+                musicButton.innerText = "🎵 ";
+            }
+        }
+
+
+        window.addEventListener("DOMContentLoaded", function() {
+            backgroundMusic.play();
+            musicButton.innerText = "🔇 ";
+        });
+    </script>
+</div>
+</body>
+</html>

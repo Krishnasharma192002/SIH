@@ -1,0 +1,65 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: url(images/color.jpg);
+    background-size: cover;
+    
+}
+
+.container {
+    text-align: center;
+}
+
+.level {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    background-color: #3498db;
+    color: #fff;
+    font-size: 24px;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.2s ease-in-out;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.lock-icon {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 30px;
+    color: #ccc;
+}
+
+.level:hover {
+    background-color: #2980b9;
+    transform: scale(1.1) translateZ(10px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.level.locked {
+    background-color: #ccc;
+    cursor: pointer;
+}
+
+.level.locked .lock-icon {
+    display: block;
+}
+
+.level.locked:hover {
+    background-color: #ccc;
+    transform: scale(1);
+    box-shadow: rgb(224, 37, 37) ;
+}
+.container .text{
+    color: rgb(16, 17, 21);
+    font-size:larger;
+}

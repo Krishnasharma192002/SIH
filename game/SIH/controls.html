@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Controls</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: url(images/levelbg.jpg);
+            background-size: cover;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 18px;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            margin: 10px;
+            cursor: pointer;
+            transition: background-color 0.2s, box-shadow 0.2s, color 0.2s; /* Added color transition */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .button:hover {
+            background-color: #2980b9;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+            color: #fff; /* Change text color to white on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1></h1>
+        <div class="button-container">
+            <a href="etrademark.html"><button class="button" id="playButton">TRADEMARK</button></a>
+            <a href="ecopyright.html"><button class="button" id="resumeButton">COPYRIGHT</button></a>
+            <a href="edesign.html"><button class="button" id="restartButton">PATENTS</button></a>
+            <a href="epatent.html"><button class="button" id="restartButton">DESIGN</button></a>
+        </div>
+    </div>
+    <script>
+        const buttons = document.querySelectorAll('.button');
+
+        // Function to generate a random color in hex format
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        // Add a random background color on button hover
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                const randomColor = getRandomColor();
+                button.style.backgroundColor = randomColor;
+            });
+
+            button.addEventListener('mouseleave', () => {
+                button.style.backgroundColor = '#3498db'; // Reset to default color
+            });
+        });
+    </script>
+</body>
+</html>

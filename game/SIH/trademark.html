@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUIZ GAME</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: url(images/color.jpg);
+             background-size: cover;
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            background: url(images/bg.jpg);
+        }
+
+        .question {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .option {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .option:hover {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        .result {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>TEST YOURSELF</h1>
+        <div class="question" id="question">What is a trademark</div>
+        <div class="options">
+            <div class="option" onclick="checkAnswer(0)">A. Paris</div>
+            <div class="option" onclick="checkAnswer(1)">B. London</div>
+            <div class="option" onclick="checkAnswer(2)">C. Berlin</div>
+            <div class="option" onclick="checkAnswer(3)">D. Rome</div>
+        </div>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "What is a trademark",
+                options: ["A type of patent ", "A unique symbol or name used to identify products or services ", "A type of copyright ", "A special kind of business license"],
+                answerIndexes: [1]
+            },
+            {
+                question: "Why do companies use trademarks?",
+                options: ["To confuse customers" ,"To protect their brand identity and reputation" ,"To keep their products a secret", "To pay less in taxes" ],
+                answerIndexes: [1]
+            },
+            {
+                question: "Which of the following can be a trademark?",
+                options: ["A unique logo", "A famous person's autograph" , "A common word used by many businesses" , "A public park"
+                ],
+                answerIndexes: [0]
+            },
+            {
+                question: "If a company has a trademark for a specific logo, what does that mean?",
+                options: ["Anyone can use the same logo for their products", 
+                 "Only the company can use that logo for its products" ,
+                 "The company can use any logo it wants" ,
+                 "The logo is free for anyone to use"
+                ],
+                answerIndexes: [1]
+            },
+            {
+                question: "Why are trademarks important for consumers?",
+                options: ["They make products cheaper", 
+                 "They help consumers identify and trust products they like", 
+                 "They make products taste better" ,
+                 "They guarantee products are eco-friendly"
+                ],
+                answerIndexes: [1]
+            },
+            {
+                question: "What can happen if someone uses a trademark without permission from the owner?",
+                options: ["They get a reward", 
+                 "Nothing happens" ,
+                "They might get in legal trouble and have to stop using the trademark", 
+                "They get a discount"
+                ],
+                answerIndexes: [2]
+            },
+            {
+                question: "Which famous fast-food restaurant is known for its golden arches, which is also its trademark?",
+                options: ["Burger King",  
+                "Taco Bell", 
+                 "KFC",
+                 "McDonald's"
+                ],
+                answerIndexes: [3]
+            },
+            {
+                question: "What government agency in the United States handles trademark registrations?",
+                options: ["FBI (Federal Bureau of Investigation)", 
+                 "IRS (Internal Revenue Service)", 
+                 "USPTO (United States Patent and Trademark Office)",
+                 "FDA (Food and Drug Administration)"
+                ],
+                answerIndexes: [2]
+            },
+            {
+                question: "What is the purpose of a trademark registration?",
+                options: ["To make the trademark public domain ", 
+                "To protect the trademark owner's exclusive rights to the mark ", 
+                 "To give the trademark owner free advertising ", 
+                "To allow anyone to use the trademark"
+                ],
+                answerIndexes: [1]
+            },
+            {
+                question: "Can a person have a trademark for their own name?",
+                options: ["No, trademarks can only be for made-up names", 
+                "Yes, if their name is unique and used to identify their products or services",
+                "Only if they are a famous celebrity",
+                 "Only if they change their name legally"
+                ],
+                answerIndexes: [1]
+            },
+            // Add more questions here...
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function displayQuestion() {
+            if (currentQuestion < questions.length) {
+                document.getElementById("question").textContent = `Question ${currentQuestion + 1}: ${questions[currentQuestion].question}`;
+                const optionsHTML = questions[currentQuestion].options.map((option, index) => {
+                    return `<div class="option" onclick="checkAnswer(${index})">${String.fromCharCode(65 + index)}. ${option}</div>`;
+                }).join("");
+                document.querySelector(".options").innerHTML = optionsHTML;
+            } else {
+                document.getElementById("question").textContent = "Quiz Completed!";
+                document.querySelector(".options").innerHTML = "";
+                document.getElementById("result").textContent = `Your Score: ${score} / ${questions.length}`;
+            }
+        }
+
+        function checkAnswer(selectedIndex) {
+            const correctAnswers = questions[currentQuestion].answerIndexes;
+            if (correctAnswers.includes(selectedIndex)) {
+                score++;
+            }
+            currentQuestion++;
+            displayQuestion();
+        }
+
+        displayQuestion();
+    </script>
+</body>
+</html>

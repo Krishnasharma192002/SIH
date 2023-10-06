@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUIZ GAME</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: url(images/color.jpg);
+             background-size: cover;
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            background: url(images/bg.jpg);
+            
+        }
+
+        .question {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .option {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .option:hover {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        .result {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+        
+    </style>
+</head>
+<body>
+    <ul>
+        
+    </ul>
+    <div class="container">
+        <h1>TEST YOURSELF</h1>
+        <div class="question" id="question">What is a trademark</div>
+        <div class="options">
+            <div class="option" onclick="checkAnswer(0)">A. Paris</div>
+            <div class="option" onclick="checkAnswer(1)">B. London</div>
+            <div class="option" onclick="checkAnswer(2)">C. Berlin</div>
+            <div class="option" onclick="checkAnswer(3)">D. Rome</div>
+        </div>
+        <div class="result" id="result"></div>
+        <script>
+            const lock2 = getElementById('lock2');
+            const backgroundMusic = document.getElementById("backgroundMusic");
+            const musicButton = document.getElementById("musicButton");
+    
+            function toggleMusic() {
+                if (backgroundMusic.paused) {
+                    backgroundMusic.play();
+                    musicButton.innerText = "🔇";
+                } else {
+                    backgroundMusic.pause();
+                    musicButton.innerText = "🎵 ";
+                }
+            }
+    
+            const levelChanger("level") {
+                lock2.classList.add("hidden");
+            }
+            window.addEventListener("DOMContentLoaded", function() {
+                backgroundMusic.play();
+                musicButton.innerText = "🔇 ";
+            });
+        </script>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "What is a patent?",
+                options: [ "A type of copyright protection for books",
+                 "A legal document that gives you the exclusive right to make, use, and sell an invention",
+            	 "A trademark for a brand logo",
+                 "A type of government-issued identification",
+                ],
+                answerIndexes: [1]
+            },
+            {
+                question: "Which of the following is NOT eligible for a patent?",
+                options: ["A new and useful machine",
+                 "A novel and non-obvious chemical compound",
+            	 "A fictional character in a novel",
+                 "An innovative process for manufacturing"
+                ],
+                answerIndexes: [2]
+            },
+            {
+                question: "How long does a typical utility patent last?",
+                options: ["5 years",
+                 "10 years",
+                 "20 years from the date of filing",
+                 "Indefinitely"
+                ],
+                answerIndexes: [2]
+            },
+            {
+                question: "What is the purpose of a patent?",
+                options: ["To keep inventions secret",
+                 "To give the inventor exclusive rights to their invention for a limited time",
+                 "To promote the sharing of ideas",
+                 "To provide government funding for research and development"
+                ],
+                answerIndexes: [1]
+            },
+            {
+                question: ": Who grants patents in the United States?",
+                options: ["The President of the United States",
+                 "The U.S. Congress",
+                 "The U.S. Patent and Trademark Office (USPTO)",
+                 "The Federal Trade Commission (FTC)"
+                ],
+                answerIndexes: [2]
+            },
+            {
+                question: "Which of the following is NOT true about patents?",
+                options: ["Patents encourage innovation by granting exclusive rights.",
+                "Patents are publicly available documents.",
+                 "Once a patent is granted, it is never subject to challenge.",
+                "Patents can be sold or licensed to others."
+                ],
+                answerIndexes: [2]
+            },
+            {
+                question: "What is the term for the process where a patent holder allows others to use their invention for a fee?",
+                options: [ "Licensing",
+                 "Monopoly",
+                 "Infringement",
+                 "Trademark"
+                ],
+                answerIndexes: [0]
+            },
+            {
+                question: "If someone uses, makes, or sells your patented invention without permission, it's called:",
+                options: ["Copyright infringement",
+                 "Patent infringement",
+                 "Trademark violation",
+                 "Public domain"
+                ],
+                answerIndexes: [1]
+            },
+            {
+                question: "Which of the following is an example of a famous patented invention?",
+                options: ["The Eiffel Tower",
+                "The light bulb (invented by Thomas Edison)",
+                "The Mona Lisa painting",
+                "The Declaration of Independence"
+                ],
+                answerIndexes: [1]
+            },
+            {
+                question: "Why is it important to protect inventions with patents?",
+                options: ["To make a lot of money quickly",
+                "To encourage inventors to share their ideas with the public",
+                "To prevent anyone else from ever using the invention",
+                 "To promote innovation and reward inventors for their hard work"
+                ],
+                answerIndexes: [3]
+            },
+           
+            // Add more questions here...
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        const count=0;
+        function displayQuestion() {
+            if (currentQuestion < questions.length) {
+                document.getElementById("question").textContent = `Question ${currentQuestion + 1}: ${questions[currentQuestion].question}`;
+                const optionsHTML = questions[currentQuestion].options.map((option, index) => {
+                    return `<div class="option" onclick="checkAnswer(${index})">${String.fromCharCode(65 + index)}. ${option}</div>`;
+                }).join("");
+                document.querySelector(".options").innerHTML = optionsHTML;
+            } else {
+                document.getElementById("question").textContent = "Quiz Completed!";
+                document.querySelector(".options").innerHTML = "";
+                document.getElementById("result").textContent = `Your Score: ${score} / ${questions.length}`;
+            }
+        }
+
+        function checkAnswer(selectedIndex) {
+            const correctAnswers = questions[currentQuestion].answerIndexes;
+            if (correctAnswers.includes(selectedIndex)) {
+                score++;
+                count++;
+            }
+            currentQuestion++;
+            displayQuestion();
+        }
+        if(count==10){
+            bolck.style(disbale);
+        }
+
+        displayQuestion();
+    </script>
+</body>
+</html>
